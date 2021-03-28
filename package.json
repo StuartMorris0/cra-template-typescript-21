@@ -2,17 +2,59 @@
   "name": "cra-ts-repo",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
+  "main": "template.json",
+  "files": [
+    "template",
+    "template.json"
+  ],
   "dependencies": {
+    "@babel/preset-typescript": "^7.13.0",
+    "@reduxjs/toolkit": "^1.5.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "@types/classnames": "^2.2.11",
     "@types/jest": "^26.0.15",
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "@types/react-helmet": "^6.1.0",
+    "@types/react-redux": "^7.1.16",
+    "@types/react-router-dom": "^5.1.7",
+    "@types/redux-logger": "^3.0.8",
+    "@types/styled-components": "^5.1.9",
+    "@typescript-eslint/eslint-plugin": "^4.19.0",
+    "@typescript-eslint/parser": "^4.19.0",
+    "classnames": "^2.2.6",
+    "coveralls": "^3.1.0",
+    "eslint": "^7.23.0",
+    "eslint-config-airbnb-typescript": "^12.3.1",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.3.2",
+    "eslint-plugin-jest-dom": "^3.6.5",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "^7.23.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-testing-library": "^3.10.2",
+    "framer-motion": "^4.0.3",
+    "history": "^5.0.0",
+    "husky": "^5.2.0",
+    "jest-styled-components": "^7.0.3",
+    "prettier": "^2.2.1",
+    "prettier-eslint": "^12.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-helmet": "^6.1.0",
+    "react-redux": "^7.2.3",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "redux-logger": "^3.0.6",
+    "styled-components": "^5.2.1",
+    "ts-jest": "^26.5.4",
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"
   },
@@ -20,7 +62,15 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
+    "coverage": "npm test -- --coverage --silent --watchAll=false",
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx src --color",
+    "format": "prettier --write 'src/**/*.{ts,tsx,scss,css,json}'",
+    "clean-files": "rm -rf ./template/public ./template/src ./template/templates ./template/e2e && rm -f ./template/gitignore ./template/.eslintignore ./template/generate-react-cli.json ./template/.eslintrc  ./template/.prettierrc ./template/README.md ./template/README_CRA.md ./template/tsconfig.json ./template/jest-puppeteer.config.js ./template/.env",
+    "copy-files": "cp -a ./src/. template/src && cp -a .gitignore template/gitignore && cp -a ./public/. template/public && cp -a ./templates/. template/templates && cp .eslintignore .eslintrc.js .prettierrc tsconfig.json README.md generate-react-cli.json .babelrc .env template/",
+    "prepublishOnly": "yarn clean-files && yarn copy-files",
+    "isready": "yarn format && yarn lint && yarn build"
   },
   "eslintConfig": {
     "extends": [
@@ -39,5 +89,58 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "jest": {
+    "coveragePathIgnorePatterns": [
+      "node_modules",
+      "test-config",
+      "interfaces",
+      "jestGlobalMocks.ts",
+      ".module.ts",
+      "<rootDir>/src/reportWebVitals.ts",
+      "<rootDir>/src/react-app-env.d.ts",
+      "<rootDir>/src/global/constants/config.ts",
+      ".mock.ts"
+    ],
+    "moduleNameMapper": {
+      "~src/(.*)": "<rootDir>/src/$1",
+      "~components/(.*)": "<rootDir>/src/components/$1",
+      "~global/(.*)": "<rootDir>/src/global/$1",
+      "~assets/(.*)": "<rootDir>/src/assets/$1",
+      "~features/(.*)": "<rootDir>/src/features/$1",
+      "~hooks/(.*)": "<rootDir>/src/hooks/$1",
+      "~pages/(.*)": "<rootDir>/src/pages/$1"
+    },
+    "transform": {
+      "^.+\\.(ts|tsx|js|jsx)$": "ts-jest",
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    },
+    "coverageReporters": [
+      "json",
+      "text",
+      "html",
+      "lcov"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/**/*/*.d.ts",
+      "!src/**/*/Loadable.{js,jsx,ts,tsx}",
+      "!src/**/*/types.ts",
+      "!src/**/store.ts",
+      "!src/index.tsx",
+      "!src/serviceWorker.ts",
+      "!<rootDir>/node_modules/",
+      "!**/templates/**",
+      "!**/template/**"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    }
   }
 }
