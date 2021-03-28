@@ -1,13 +1,59 @@
 {
-  "name": "cra-ts-repo",
-  "version": "0.1.0",
-  "private": true,
+  "name": "cra-template-typescript-21",
+  "version": "1.0",
+  "description": "A CRA React Typescript template. Using the some opinionated must-have libraries.",
+  "keywords": [
+    "react",
+    "create-react-app",
+    "cra-template",
+    "template",
+    "reactjs",
+    "react17",
+    "TypeScript",
+    "Redux Toolkit",
+    "Redux",
+    "react-redux",
+    "redux-thunk",
+    "Styled Components",
+    "Jest",
+    "react-router",
+    "Folder structure",
+    "Generate templates",
+    "react-router-dom",
+    "ESLint",
+    "prettier",
+    "Commitlint",
+    "React Testing Library",
+    "Framer Motion"
+  ],
   "license": "MIT",
   "main": "template.json",
   "files": [
     "template",
     "template.json"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/StuartMorris0/cra-template-typescript-21.git",
+    "directory": "/"
+  },
+  "bugs": {
+    "url": "https://github.com/StuartMorris0/cra-template-typescript-21/issues"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
+    "coverage": "npm test -- --coverage --silent --watchAll=false",
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx src --color",
+    "format": "prettier --write 'src/**/*.{ts,tsx,scss,css,json}'",
+    "clean-files": "rm -rf ./template/public ./template/src ./template/templates ./template/e2e && rm -f ./template/gitignore ./template/.eslintignore ./template/generate-react-cli.json ./template/.eslintrc  ./template/.prettierrc ./template/README.md ./template/README_CRA.md ./template/tsconfig.json ./template/jest-puppeteer.config.js ./template/.env",
+    "copy-files": "cp -a ./src/. template/src && cp -a .gitignore template/gitignore && cp -a ./public/. template/public && cp -a ./templates/. template/templates && cp .eslintignore .eslintrc.js .prettierrc tsconfig.json README.md generate-react-cli.json .babelrc .env template/",
+    "prepublishOnly": "yarn clean-files && yarn copy-files",
+    "isready": "yarn format && yarn lint && yarn build"
+  },
   "dependencies": {
     "@babel/preset-typescript": "^7.13.0",
     "@reduxjs/toolkit": "^1.5.1",
@@ -57,20 +103,6 @@
     "ts-jest": "^26.5.4",
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
-    "coverage": "npm test -- --coverage --silent --watchAll=false",
-    "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx src --color",
-    "format": "prettier --write 'src/**/*.{ts,tsx,scss,css,json}'",
-    "clean-files": "rm -rf ./template/public ./template/src ./template/templates ./template/e2e && rm -f ./template/gitignore ./template/.eslintignore ./template/generate-react-cli.json ./template/.eslintrc  ./template/.prettierrc ./template/README.md ./template/README_CRA.md ./template/tsconfig.json ./template/jest-puppeteer.config.js ./template/.env",
-    "copy-files": "cp -a ./src/. template/src && cp -a .gitignore template/gitignore && cp -a ./public/. template/public && cp -a ./templates/. template/templates && cp .eslintignore .eslintrc.js .prettierrc tsconfig.json README.md generate-react-cli.json .babelrc .env template/",
-    "prepublishOnly": "yarn clean-files && yarn copy-files",
-    "isready": "yarn format && yarn lint && yarn build"
   },
   "eslintConfig": {
     "extends": [
