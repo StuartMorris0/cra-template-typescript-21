@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Link, Redirect, Route, Switch } from 'react-router-dom';
+import { Link, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 
 import usePageViews from 'hooks/usePageViews';
@@ -29,12 +29,11 @@ const AppRouterSwitch: React.FC = () => {
         <StyledLink to="/counter">Counter</StyledLink>
         <StyledLink to="/does-not-exist">NotFound</StyledLink>
       </StyledNav>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/counter" component={Counter} />
-        <Route path="/404" component={NotFoundPage} />
-        <Redirect to="/404" />
-      </Switch>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/counter" element={<Counter />} />
+        <Route path="/404" element={<NotFoundPage />} />
+      </Routes>
     </div>
   );
 };

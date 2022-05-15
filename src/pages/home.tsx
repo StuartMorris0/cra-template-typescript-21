@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 
 import App from 'components/App';
 
-const Home: React.FC = () => (
+const Home = () => (
   <>
     <Helmet>
       <title>HomePage</title>
