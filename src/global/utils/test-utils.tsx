@@ -31,8 +31,10 @@ AllTheProviders.defaultProps = {
 
 const customRender = (ui: ReactElement, options?: Omit<RenderOptions, 'queries'>) => render(ui, { wrapper: AllTheProviders, ...options });
 
+// eslint-disable-next-line import/export
 export * from '@testing-library/react';
 
+// eslint-disable-next-line import/export
 export { customRender as render };
 
 export { userEvent };

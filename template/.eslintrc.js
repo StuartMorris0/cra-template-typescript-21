@@ -1,15 +1,15 @@
 module.exports = {
   extends: [
     'eslint:recommended',
-    'airbnb-typescript',
-    'airbnb/hooks',
     'plugin:@typescript-eslint/recommended',
     'plugin:jest/recommended',
     'prettier',
     'plugin:prettier/recommended',
     'plugin:react/recommended',
+    'plugin:import/recommended',
+    'plugin:import/typescript',
   ],
-  plugins: ['react', '@typescript-eslint', 'jest'],
+  plugins: ['react', '@typescript-eslint', 'jest', 'import'],
   env: {
     browser: true,
     es6: true,
@@ -47,7 +47,7 @@ module.exports = {
     'import/order': [
       'error',
       {
-        groups: [['builtin', 'external'], 'internal'],
+        groups: [['builtin', 'external'], 'internal', 'parent', 'sibling', 'index'],
         pathGroups: [
           {
             pattern: 'react',

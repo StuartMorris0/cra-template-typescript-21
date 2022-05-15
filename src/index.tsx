@@ -1,6 +1,7 @@
 import React from 'react';
 
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
+import { HelmetProvider } from 'react-helmet-async';
 import { Provider } from 'react-redux';
 
 import AppRouter from 'components/AppRouter';
@@ -10,16 +11,21 @@ import { store } from 'store';
 
 import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
+const container = document.getElementById('root');
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+const root = createRoot(container!);
+
+root.render(
   <React.StrictMode>
     <ThemeProvider>
       <GlobalStyles />
       <Provider store={store}>
-        <AppRouter />
+        <HelmetProvider>
+          <AppRouter />
+        </HelmetProvider>
       </Provider>
     </ThemeProvider>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
